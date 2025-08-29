@@ -1,0 +1,31 @@
+<section>
+  <h2>Posts</h2>
+
+  <!-- loading -->
+  @if (isLoading) {
+  <p>Loading...</p>
+  }
+
+  <!-- error (optional if you added an error property) -->
+  @if(!isLoading && error) {
+  <p class="error">{{ error }}</p>
+  }
+
+  <!-- list -->
+  @if (!isLoading && posts?.length) {
+  <ul>
+    @for(post of posts; track post) {
+    <li class="post">
+      <h3>{{ post.title }}</h3>
+      <p>{{ post.body }}</p>
+      <small>User: {{ post.userId }} • ID: {{ post.id }}</small>
+    </li>
+    }
+  </ul>
+  }
+
+  <!-- empty state -->
+  @if (!isLoading && !posts?.length) {
+  <p>No posts found.</p>
+  }
+</section>

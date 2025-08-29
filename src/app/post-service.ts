@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 export interface post {
   userId: number;
@@ -21,8 +22,8 @@ export class PostService {
     
   }
 
-  getPosts() {
-    return this.http.get(this.apiUrl);
-  }
+getPosts(): Observable<post[]> {
+  return this.http.get<post[]>(this.apiUrl);
+}
 
 }
