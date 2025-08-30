@@ -1,0 +1,11 @@
+<h2>Lifecycle Hooks Demo</h2>
+<input [(ngModel)]="parentMessage" placeholder="updateMessage" />
+
+<button (click)="toggleChild()">
+  {{ showChild ? "Destroy" : "Create" }} Child
+</button>
+
+{{ showChild }}
+@if(showChild) {
+<app-lifecycledemo [message]="parentMessage"></app-lifecycledemo>
+}

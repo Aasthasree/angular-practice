@@ -4,6 +4,8 @@ import { PostList } from './post-list/post-list';
 import { RegisterForm } from './register-form/register-form';
 import { ReactiveForm } from './reactive-form/reactive-form';
 import { DatabindingDirective } from './databinding-directive/databinding-directive';
+import { Lifecycledemo } from './lifecycledemo/lifecycledemo';
+import { ParentLifecycle } from './parent-lifecycle/parent-lifecycle';
 
 @Component({
   selector: 'app-root',
@@ -13,6 +15,7 @@ import { DatabindingDirective } from './databinding-directive/databinding-direct
     RegisterForm,
     ReactiveForm,
     DatabindingDirective,
+    ParentLifecycle,
   ],
   templateUrl: './app.html',
   styleUrl: './app.scss',
