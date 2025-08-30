@@ -1,0 +1,77 @@
+<h3>Course Enrollment Reactive form</h3>
+
+<form [formGroup]="courseForm" (ngSubmit)="onSubmit()">
+  <!--full name-->
+  <div>
+    <label>Full Name:</label>
+    <input type="text" formControlName="fullName" />
+    @if(courseForm.get('fullName')?.invalid &&
+    courseForm.get('fullName')?.touched) {
+    <div class="error">
+      @if(courseForm.get('fullName')?.errors?.['required']) {
+      <small>Full name is required</small>
+      } @if(courseForm.get('fullName')?.errors?.['minlength']) {
+      <small>At least 3 chracters </small>
+      }
+    </div>
+    }
+  </div>
+
+  <!--email-->
+  <div>
+    <label>Email:</label>
+    <input type="text" formControlName="email" />
+    @if(courseForm.get('email')?.invalid && courseForm.get('email')?.touched) {
+    <div class="error">
+      @if(courseForm.get('email')?.errors?.['required']) {
+      <small>Email is required</small>
+      } @if(courseForm.get('email')?.errors?.['email']) {
+      <small>Invalid email format</small>
+      }
+    </div>
+    }
+  </div>
+
+  <!--Password-->
+  <div>
+    <label>password:</label>
+    <input type="password" formControlName="password" />
+    @if(courseForm.get('password')?.invalid &&
+    courseForm.get('password')?.touched) {
+    <div class="error">
+      @if(courseForm.get('password')?.errors?.['required']) {
+      <small>Password is required</small>
+      } @if(courseForm.get('password')?.errors?.['minlength']) {
+      <small>Atleast 6 characters</small>
+      }
+    </div>
+    }
+  </div>
+
+  <!--Skills-->
+  <div>
+    <label>Skills:</label>
+    <button type="button" (click)="addSkill()">+ Add Skill</button>
+    <div formArrayName="skills">
+      @for(skill of skills.controls; track $index; let i = $index) {
+      <input [formControlName]="i" placeholder="Enter skill" />
+      <button type="button" (click)="removeSkill(i)">Remove</button>
+      @if(skills.invalid && skills.touched) {
+      <small>Skill is required</small>
+      } }
+    </div>
+  </div>
+
+  <!--Terms-->
+  <div>
+    <label>
+      <input type="checkbox" formControlName="terms" /> I accept terms and
+      conditions
+    </label>
+    @if(courseForm.get('terms')?.invalid && courseForm.get('terms')?.touched) {
+    <small>You must accept terms</small>
+    }
+  </div>
+
+  <button type="submit" [disabled]="courseForm.invalid">Enroll</button>
+</form>
