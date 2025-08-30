@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-register-form',
@@ -17,7 +17,21 @@ export class RegisterForm {
     gender: '',
   };
 
-  onSubmit(form: any) {
-    console.log(this.registerForm);
+  onSubmit(form: NgForm) {
+    console.log('is form is valid', form.valid);
+    console.log(
+      'passwords match',
+      this.registerForm.password === this.registerForm.confirmpassword
+    );
+    if (
+      form.valid &&
+      this.registerForm.password === this.registerForm.confirmpassword
+    ) {
+      console.log(this.registerForm);
+      alert('Registration successful!');
+      form.reset();
+    } else {
+      alert('please fill the form correctly!');
+    }
   }
 }
