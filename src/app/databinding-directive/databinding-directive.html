@@ -1,0 +1,27 @@
+<!--Interpolation-->
+<h2>{{ title }}</h2>
+
+<!--Two way binding-->
+<input type="text" [(ngModel)]="searchText" placeHolder="search student..." />
+
+<!--Event Binding-->
+<button type="button" (click)="addStudent()">Add student</button>
+
+<!--if directive-->
+@if (filteredStudents.length > 0) {
+<ul>
+  @for (student of filteredStudents; track student) {
+  <li
+    [ngClass]="{ topper: +student.marks > 80 }"
+    [ngStyle]="{ color: +student.marks > 50 ? 'green' : 'red' }"
+  >
+    <span [title]="'Marks: ' + student.marks">
+      {{ student.name }} - {{ student.marks }} marks
+    </span>
+  </li>
+
+  }
+</ul>
+} @else {
+<p>No students found!</p>
+}
